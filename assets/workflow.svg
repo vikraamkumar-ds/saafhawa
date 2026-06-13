@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="740" viewBox="0 0 1280 740" font-family="DejaVu Sans, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B132E"/>
+      <stop offset="1" stop-color="#122C5C"/>
+    </linearGradient>
+    <marker id="a2" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L8,3.5 L0,7 Z" fill="#22D3EE"/>
+    </marker>
+    <marker id="a3" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L8,3.5 L0,7 Z" fill="#F4A23B"/>
+    </marker>
+    <marker id="a4" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L8,3.5 L0,7 Z" fill="#22C55E"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="740" fill="url(#bg2)"/>
+
+  <text x="48" y="58" fill="#FFFFFF" font-size="32" font-weight="bold">SaafHawa — Request Workflow</text>
+  <text x="48" y="88" fill="#22D3EE" font-size="17">One /plan call, from "who's home" to a bilingual decision — with a fallback at every hop.</text>
+
+  <!-- Step boxes (row 1) -->
+  <g>
+    <!-- 1 -->
+    <rect x="48" y="140" width="220" height="120" rx="16" fill="#16233F" stroke="#2E4A78" stroke-width="2"/>
+    <circle cx="78" cy="170" r="16" fill="#22D3EE"/><text x="78" y="176" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">1</text>
+    <text x="104" y="176" fill="#FFFFFF" font-size="18" font-weight="bold">Set household</text>
+    <text x="68" y="208" fill="#AFC3E0" font-size="13">child · elderly · pregnant</text>
+    <text x="68" y="228" fill="#AFC3E0" font-size="13">allergies · heart/lung ·</text>
+    <text x="68" y="248" fill="#AFC3E0" font-size="13">outdoor worker</text>
+
+    <!-- 2 -->
+    <rect x="330" y="140" width="220" height="120" rx="16" fill="#16233F" stroke="#2E4A78" stroke-width="2"/>
+    <circle cx="360" cy="170" r="16" fill="#22D3EE"/><text x="360" y="176" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">2</text>
+    <text x="386" y="176" fill="#FFFFFF" font-size="18" font-weight="bold">Frontend call</text>
+    <text x="350" y="208" fill="#AFC3E0" font-size="13">POST /plan</text>
+    <text x="350" y="230" fill="#7FA8D8" font-size="12.5">{ area, household }</text>
+
+    <!-- 3 -->
+    <rect x="612" y="140" width="220" height="120" rx="16" fill="#0E2A52" stroke="#22D3EE" stroke-width="2"/>
+    <circle cx="642" cy="170" r="16" fill="#22D3EE"/><text x="642" y="176" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">3</text>
+    <text x="668" y="176" fill="#FFFFFF" font-size="18" font-weight="bold">Get AQI</text>
+    <text x="632" y="208" fill="#AFC3E0" font-size="13">cache → WAQI →</text>
+    <text x="632" y="230" fill="#AFC3E0" font-size="13">OpenWeather</text>
+
+    <!-- 4 -->
+    <rect x="894" y="140" width="220" height="120" rx="16" fill="#3A2A1A" stroke="#F4A23B" stroke-width="2"/>
+    <circle cx="924" cy="170" r="16" fill="#F4A23B"/><text x="924" y="176" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">4</text>
+    <text x="950" y="176" fill="#FFFFFF" font-size="18" font-weight="bold">Build prompt</text>
+    <text x="914" y="208" fill="#F2C893" font-size="13">AQI + category +</text>
+    <text x="914" y="230" fill="#F2C893" font-size="13">household context</text>
+  </g>
+
+  <!-- Step boxes (row 2) -->
+  <g>
+    <!-- 5 -->
+    <rect x="894" y="350" width="220" height="120" rx="16" fill="#3A2A1A" stroke="#F4A23B" stroke-width="2"/>
+    <circle cx="924" cy="380" r="16" fill="#F4A23B"/><text x="924" y="386" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">5</text>
+    <text x="950" y="386" fill="#FFFFFF" font-size="18" font-weight="bold">Groq LLM</text>
+    <text x="914" y="418" fill="#F2C893" font-size="13">Llama 3.3 70B →</text>
+    <text x="914" y="440" fill="#F2C893" font-size="13">bilingual verdict JSON</text>
+
+    <!-- 6 -->
+    <rect x="612" y="350" width="220" height="120" rx="16" fill="#16233F" stroke="#2E4A78" stroke-width="2"/>
+    <circle cx="642" cy="380" r="16" fill="#22D3EE"/><text x="642" y="386" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">6</text>
+    <text x="668" y="386" fill="#FFFFFF" font-size="18" font-weight="bold">Cache plan</text>
+    <text x="632" y="418" fill="#AFC3E0" font-size="13">SQLite · TTL 10 min</text>
+    <text x="632" y="440" fill="#7FA8D8" font-size="12.5">+ store last-good</text>
+
+    <!-- 7 -->
+    <rect x="330" y="350" width="220" height="120" rx="16" fill="#13352B" stroke="#22C55E" stroke-width="2"/>
+    <circle cx="360" cy="380" r="16" fill="#22C55E"/><text x="360" y="386" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">7</text>
+    <text x="386" y="386" fill="#FFFFFF" font-size="18" font-weight="bold">Render</text>
+    <text x="350" y="418" fill="#A9D8BC" font-size="13">verdict + steps + why</text>
+    <text x="350" y="440" fill="#A9D8BC" font-size="13">EN + Urdu (Nastaliq)</text>
+
+    <!-- 8 -->
+    <rect x="48" y="350" width="220" height="120" rx="16" fill="#16233F" stroke="#2E4A78" stroke-width="2"/>
+    <circle cx="78" cy="380" r="16" fill="#22D3EE"/><text x="78" y="386" fill="#0B132E" font-size="18" font-weight="bold" text-anchor="middle">8</text>
+    <text x="104" y="386" fill="#FFFFFF" font-size="18" font-weight="bold">Ask follow-up</text>
+    <text x="68" y="418" fill="#AFC3E0" font-size="13">POST /ask — grounded</text>
+    <text x="68" y="440" fill="#AFC3E0" font-size="13">in same air + household</text>
+  </g>
+
+  <!-- arrows row1 -->
+  <line x1="268" y1="200" x2="328" y2="200" stroke="#22D3EE" stroke-width="3" marker-end="url(#a2)"/>
+  <line x1="550" y1="200" x2="610" y2="200" stroke="#22D3EE" stroke-width="3" marker-end="url(#a2)"/>
+  <line x1="832" y1="200" x2="892" y2="200" stroke="#22D3EE" stroke-width="3" marker-end="url(#a2)"/>
+  <!-- 4 -> 5 (down) -->
+  <line x1="1004" y1="260" x2="1004" y2="348" stroke="#F4A23B" stroke-width="3" marker-end="url(#a3)"/>
+  <!-- arrows row2 (right to left) -->
+  <line x1="892" y1="410" x2="834" y2="410" stroke="#22D3EE" stroke-width="3" marker-end="url(#a2)"/>
+  <line x1="610" y1="410" x2="552" y2="410" stroke="#22C55E" stroke-width="3" marker-end="url(#a4)"/>
+  <line x1="328" y1="410" x2="270" y2="410" stroke="#22C55E" stroke-width="3" marker-end="url(#a4)"/>
+
+  <!-- Fallback lane -->
+  <rect x="48" y="540" width="1066" height="150" rx="18" fill="#101d36" stroke="#22C55E" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="72" y="578" fill="#22C55E" font-size="18" font-weight="bold">Graceful degradation — guidance ALWAYS loads</text>
+
+  <rect x="72" y="600" width="320" height="68" rx="12" fill="#13352B" stroke="#22C55E" stroke-width="1.5"/>
+  <text x="88" y="628" fill="#FFFFFF" font-size="15" font-weight="bold">Air source down?</text>
+  <text x="88" y="652" fill="#A9D8BC" font-size="13">→ serve last-good AQI (stale flag)</text>
+
+  <rect x="412" y="600" width="320" height="68" rx="12" fill="#3A2A1A" stroke="#F4A23B" stroke-width="1.5"/>
+  <text x="428" y="628" fill="#FFFFFF" font-size="15" font-weight="bold">LLM 429 / offline?</text>
+  <text x="428" y="652" fill="#F2C893" font-size="13">→ deterministic rule-based plan</text>
+
+  <rect x="752" y="600" width="338" height="68" rx="12" fill="#0E2A52" stroke="#22D3EE" stroke-width="1.5"/>
+  <text x="768" y="628" fill="#FFFFFF" font-size="15" font-weight="bold">No network at all?</text>
+  <text x="768" y="652" fill="#AFC3E0" font-size="13">→ frontend offline copy still renders</text>
+</svg>
